@@ -1,5 +1,5 @@
 
-<?php
+<?php /*
 //$id = $_POST['deleteid'];
 $id = $_GET['id']
 echo $id;
@@ -11,7 +11,7 @@ $del = $bdd->prepare("DELETE FROM articles WHERE id = :id");
  $del->execute();
 echo "deleted";
 }
-  delete();?>
+  delete(); */?>
              
          
                
