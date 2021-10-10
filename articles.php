@@ -1,12 +1,6 @@
 <?php
 include('header.php');
 ?>
-<?php /*function getArticles()
-{
-    $get=file_get_contents('articles.json');
-    print_r($get);
-    }
-    getArticles()*/ ?>
 
 <?php
 // Sous WAMP connection db
@@ -39,9 +33,7 @@ while ($donnees = $reponse->fetch_assoc()) {
     <form action="delete.php" method="post">
 
         <button><a href="articles.php?id=<?php echo $donnees['id']; ?>">Delete</a></button>
-        <button><a href="index.php?id=<?php echo $donnees['id']; ?>">Afficher</a></button>
-        <!--  <input type='submit' name='delete' value='delete' />-->
-        <!--<input type='hidden' name='deleteid' value='<?php echo $donnees['id']; ?>' />-->
+        <button><a href="comment.php?id=<?php echo $donnees['id']; ?>">Afficher</a></button>
     </form>
 <?php
 
