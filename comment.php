@@ -16,24 +16,21 @@
         //echo 'titre';
         $bdd = new mysqli('localhost', 'root', '', 'articles');
 
-
         $res = $bdd->query("SELECT * FROM articles WHERE id= $id") or die($bdd->error);
-
+        //afficher un article
         $row = $res->fetch_array();
-        echo $titre = $row['titre'];
-        echo $texte = $row['texte'];
-        echo $auteur = $row['auteur'];
-        echo $date = $row['date_pub'];
+        echo $titre = $row['titre'] . '<br />';
+        echo $texte = $row['texte'] . '<br />';
+        echo $auteur = $row['auteur'] . '<br />';
+        echo $date = $row['date_pub'] . '<br />';
     }
     ?>
-
-
     <h1>comments</h1>
 
     <!--afficher le commentaire -->
     <?php
-    include('afficher.php');
-    // Sous WAMP connection db
+    include('afficher.php'); //formulaire
+    // connection db
     $com = new mysqli('localhost', 'root', '', 'articles');
     // Check connection
     if (!$com) {
@@ -43,12 +40,12 @@
     $texte = isset($_POST['texte']) ? $_POST['texte'] : NULL;
     $auteur = isset($_POST['auteur']) ? $_POST['auteur'] : NULL;
     $date = isset($_POST['date']) ? $_POST['date'] : NULL;
-
+    $id_article = isset($_POST['id_article']) ? $_POST['id_article'] : NULL;
     //insert data into db
-    $com->query("INSERT INTO commentaires (texte, auteur, date) VALUES ('$texte', '$auteur', '$date')") or die($com->error);
+    $com->query("INSERT INTO commentaires (texte, auteur, date, id_article) VALUES ('$texte', '$auteur', '$date', '$id_article')") or die($com->error);
 
     //affichage
-    $reponse = $com->query('SELECT * FROM commentaires');
+    $reponse = $com->query("SELECT * FROM commentaires");
 
     // On affiche chaque entrée une à une
     while ($donnees = $reponse->fetch_assoc()) {
@@ -57,14 +54,12 @@
         echo $donnees['auteur'] . '<br />';
         echo $donnees['date'];
     }
-    // $sql = "INSERT INTO commentaires (texte, auteur, date) VALUES ('$texte', '$auteur', '$date') or die($com->error)";
-    // $result = $com->query($sql);
-
     ?>
-    <?php if (isset($_GET['id'])) {
-        $id = $_GET['id'];
+    <?php /*if (isset($_GET['id_article'])) {
+        $id = $_GET['id_article'];
         $com->query("SELECT * FROM commentaires WHERE id= $id") or die($com->error);
-    }
+            }
+    }*/
     ?>
 
 </body>
